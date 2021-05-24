@@ -1,0 +1,141 @@
+{% extends 'app/employer/base1.html' %}
+{% load static %}
+{% block title %}
+
+        <title>JobPortal - Employer Profile</title>
+
+{% endblock %}
+{% block content %}
+    <script>
+        function message(){
+            
+            alert("Profile Updated Successfully");
+        }
+    </script>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4">Employer Profile</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="{% url 'employerindex' %}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Employer Profile</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <p class="mb-0">
+                                    
+                                    
+                                    
+                                    <form action="{% url 'updateprofile' pk=request.session.id %}" method="POST" enctype="multipart/form-data" onsubmit="message()">
+                                        {% csrf_token %}
+
+                                        {% if key1 %}
+                                       
+                                            
+                                       
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <img src="{{MEDIA_URL}}{{key1.profile_pic.url}}" alt="" height="150px" width="150px" draggable="false">            
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="UpdateImage">Profile Pic</label> <br>
+                                                    <input class="form-control" style="height: 45px;" type="file" name="img" id="profilepic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="inputFirstName">First Name</label>
+                                                    <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name"  value="{{key1.Firstname}}" name="fname" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="inputLastName">Last Name</label>
+                                                    <input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name"  value="{{key1.Lastname}}" name="lname" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                                    <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Enter email address" value="{{request.session.Email}}" name="email" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="inputContact">Contact</label>
+                                                    <input class="form-control py-4" id="inputContact" type="tel" placeholder="Enter Your Contact"   value="{{key1.Contact}}" name="contact" />
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="inputDate_of_Birth">Date of Birth</label>
+                                                    <input class="form-control py-4" type="text" name="" id="" value="{{key1.DOB}}" disabled>
+                                                    <!-- <input class="form-control py-4" id="inputDate_of_Birth" type="date"  value="{{key1.DOB}}" name="dob" /> -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="Gender">Gender</label>
+                                                    <select class="form-control" style="height: 50px;" id="jobGender" name="gender" >
+                                                        {% if key1.Gender == "Male" %}
+                                                        <option>{{key1.Gender}}</option>
+                                                        <option>Female</option>
+                                                        {% else %}
+                                                        <option>{{key1.Gender}}</option>
+                                                        <option>Male</option>
+                                                        {% endif %}
+                                                        <!-- <option>===CHANGE===</option>
+                                                        <option>Male</option>
+                                                        <option>Female</option> -->
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="City">City</label>
+                                                    <input class="form-control py-4" id="City" type="text" placeholder="City"  value="{{key1.City}}" name="city" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="State">State</label>
+                                                    <input class="form-control py-4" id="State" type="text" placeholder="State"  value="{{key1.State}}" name="state" />
+                                                </div>
+                                            </div>
+                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="UpdateImage">Verification Document</label> <br>
+                                            <input class="form-control" style="height: 45px;" type="file" name="verdoc" id="verdoc">
+                                        </div>
+                                        
+                                        <div class="row justify-content-center">
+                                        <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary px-5" >Update</button></div>
+                                           
+                                        </div>
+                                        {% endif %}
+                                    </form>
+                                
+                                
+                                
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+{% endblock %}

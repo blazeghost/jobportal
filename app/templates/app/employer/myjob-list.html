@@ -1,0 +1,85 @@
+{% extends 'app/employer/base1.html' %}
+{% load static %}
+{% block title %}
+
+        <title>JobPortal - My Job List</title>
+        
+{% endblock %}
+{% block content %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4">Job List</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="{% url 'employerindex' %}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Job List</li>
+                        </ol>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Jobs
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Logo</th>
+                                                <th>Job Title</th>
+                                                <th>Company Name</th>
+                                                <th>Job Type</th>
+                                                <th>Salary</th>
+                                                <th>Location</th>
+                                                <th>Update</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Logo</th>
+                                                <th>Job Title</th>
+                                                <th>Company Name</th>
+                                                <th>Job Type</th>
+                                                <th>Salary</th>
+                                                <th>Location</th>
+                                                <th>Update</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </tfoot>
+                                        {% if job_data %}
+                                        {% for i in job_data %}
+                                        <tbody>
+                                            <tr>
+                                                <td><img src="{{MEDIA_URL}}{{i.comp_id.Company_logo.url}}" alt="company{{i.id}}" height="80px" width="80px"></td>
+                                                <td>{{i.Job_title}}</td>
+                                                <!-- Manualy Url Link -->
+
+                                                <!-- <td><a href="../empcompanysingle/{{i.comp_id.id}}">{{i.comp_id.Company_name}}</a></td> -->
+                                          
+                                                <td><a href="{% url 'empcompanysingle' pk=i.comp_id.id %}">{{i.comp_id.Company_name}}</a></td>
+
+                                                <td>{{i.Job_type}}</td>
+                                                <td>{{i.start_salary}} - {{i.end_salary}}</td>
+                                                <!-- This is Company Address not Job Address(Location) -->
+
+                                                <!-- <td>{{i.comp_id.Company_city}}, {{i.comp_id.Company_state}}</td> -->
+                                                
+                                                <!-- This is JoB Location -->
+
+                                                <td>{{i.Job_loc}}</td>
+                                                <td><a class="btn btn-success" href="{% url 'empjobsingle' pk=i.id %}">Update</a></td>
+                                                <td><a class="btn btn-danger" href="">Delete</a></td>
+                                            </tr>
+                                        </tbody>
+                        
+                                        {% endfor %}
+                                        {% endif %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+{% endblock %}

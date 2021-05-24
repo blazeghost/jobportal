@@ -1,0 +1,161 @@
+{% extends 'app/employer/base1.html' %}
+{% load static %}
+{% block title %}
+
+        <title>JobPortal - Job Single</title>
+        
+{% endblock %}
+
+{% block content %}
+            <div id="layoutSidenav_content">
+                <main>
+                    {% if job_data %}
+                    <div class="container-fluid">
+                        <h1 class="mt-4">Job : {{job_data.Job_title}}</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="{% url 'employerindex' %}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Job</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <p class="mb-0">
+                                    
+                                    
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <img src="{{MEDIA_URL}}{{job_data.comp_id.Company_logo.url}}" alt="" height="150px" width="150px">            
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="jobtitle">Company Name</label>
+                                                    <input class="form-control py-4" id="jobtitle" type="text" value="{{job_data.comp_id.Company_name}}" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="applicationDeadline">Application Deadline</label>
+                                                    <input class="form-control py-4" id="applicationDeadline" type="date" name="app_deadline" value="{{job_data.App_deadline}}" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="Jobtype">Job Type</label>
+                                                    <select class="form-control" style="height: 50px;" id="Jobtype" name="jobtype" disabled >
+                                                        <option>{{job_data.Job_type}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="jobCategory">Job Category</label>
+                                                    <select class="form-control" style="height: 50px;" id="jobCategory" name="jobcategory"  disabled >
+                                                        <option>{{job_data.Job_category}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="salaryStart">Salary Start</label>
+                                                    <input class="form-control py-4" id="salaryStart" type="text" name="salarystart" placeholder="e.g. 5k" value="{{job_data.start_salary}}" disabled/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="salaryEnd">Salary End</label>
+                                                    <input class="form-control py-4" id="salaryEnd" type="text" name="salaryend" placeholder="e.g. 10k" value="{{job_data.end_salary}}" disabled/>
+                                                </div>
+                                            </div>
+                                           
+                                            
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="Gender">Gender</label>
+                                                    <select class="form-control" style="height: 50px;" id="jobGender" name="jobgender" disabled >
+                                                        <option>{{job_data.Gender}}</option>
+                                                   
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="jobExperience">Experience</label>
+                                                    <select class="form-control" style="height: 50px;" id="jobExperience" name="experience"  disabled>
+                                                        <option>{{job_data.Experience}}</option> 
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="jobEducation">Education</label>
+                                                    <select class="form-control" style="height: 50px;" id="jobEducation" name="education"  disabled>
+                                                        <option>{{job_data.Education}}</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="JobLocation">Job Location</label>
+                                                    <input class="form-control py-4" id="JobLocation" type="text" name="joblocation" placeholder="e.g. Gujarat" value="{{job_data.Job_loc}}" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="Vacancy">Vacancy</label>
+                                                    <input class="form-control py-4" id="vacancy" type="number" name="vacancy" placeholder="e.g. 10" value="{{job_data.Vacancy}}" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="jobDescription">Description</label>
+                                            <textarea class="form-control" id="jobDescription" name="jobdesp" rows="5" disabled>{{job_data.Job_desp}}</textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="jobRespon">Responsibilities</label>
+                                            <textarea class="form-control" id="jobRespon" name="jobrespon" rows="5" disabled>{{job_data.Job_respon}}</textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="job-edu-exp">Education + Experience</label>
+                                            <textarea class="form-control" id="job-edu-exp" name="jobeduexp" rows="5" disabled>{{job_data.Job_edu_exp}}</textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="job-benefits">Benefits</label>
+                                            <textarea class="form-control" id="job-benefits" name="jobbenedits" rows="5" disabled>{{job_data.Job_benefit}}</textarea>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                        
+                                            <div class="btn btn-primary px-5" ><a href="{% url 'empjoblistpage' %}" style="color: white;"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back to Job List</a></div>
+                                        </div>
+                                    </form>
+                                {% endif %}
+                                
+                                
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends 'app/employer/base1.html' %}
+{% load static %}
+{% block title %}
+
+        <title>JobPortal - Company Single</title>
+
+{% endblock %}
+{% block content %}
+            <div id="layoutSidenav_content">
+                <main>
+                    {% if key1 %}
+                    <div class="container-fluid">
+                        <h1 class="mt-4">{{key1.Company_name}} Profile</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="{% url 'employerindex' %}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">{{key1.Company_name}} Profile</li>
+                        </ol>
+                    {% endif %}
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <p class="mb-0">
+                                    
+                                    {% if key1 %}
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <img src="{{MEDIA_URL}}{{key1.Company_logo.url}}" alt="" height="150px" width="150px">            
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="CompanyName">Company Name</label>
+                                                    <input class="form-control py-4" id="CompanyName" type="text" placeholder="Company Name" name="compname" value="{{key1.Company_name}}" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="CompanyEmail">Company Email</label>
+                                                    <input class="form-control py-4" id="CompanyEmail" type="email" aria-describedby="emailHelp" placeholder="Company Email Id" name="compemail" value="{{key1.Company_Email}}" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="Companycontact">Company Contact</label>
+                                                    <input class="form-control py-4" id="Companycontact" type="tel" placeholder="Company Contact" name="compcontact" value="{{key1.Company_contact}}" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="CompanyAddress">Company Address</label>
+                                                    <input class="form-control py-4" id="CompanyAddress" type="text" placeholder="Company Address" name="compaddress" value="{{key1.Company_address}}" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="CompanyCity">Company City</label>
+                                                    <input class="form-control py-4" id="CompanyCity" type="text" placeholder="Company City" name="compcity" value="{{key1.Company_city}}" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="CompanyState">Company State</label>
+                                                    <input class="form-control py-4" id="CompanyState" type="text" placeholder="Company State" name="compstate" value="{{key1.Company_state}}" disabled />
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="Website">Website</label>
+                                                    <input class="form-control py-4" id="Website" type="text" placeholder="Website Link" name="weblink" value="{{key1.Company_link}}" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="OpenJob">Open Job</label>
+                                                    <input class="form-control py-4" id="OpenJob" type="text" placeholder="No. of Open Job" name="openjob" value="{{key1.open_job}}" disabled />
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="Founded">Founded</label>
+                                                    <input class="form-control py-4" id="Founded" type="number" placeholder="Founding year" name="founded" value="{{key1.Founded}}" disabled />
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="Description">Description</label>
+                                            <textarea class="form-control" id="description" name="description" rows="5"  disabled>{{key1.Company_desp}}</textarea>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                        
+                                                <div class="btn btn-primary px-5" ><a href="{% url 'empcompanylist' %}" style="color: white;"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back to Company List</a></div>
+                                        </div>
+                    
+                                    </form>
+                                    {% endif %}
+                                
+                                
+                                
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+{% endblock %}

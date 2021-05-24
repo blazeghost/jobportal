@@ -1,0 +1,91 @@
+
+{% extends 'app/base2.html' %}
+
+{% block content %}
+    <!-- Page Heading Section Start -->
+    <div class="page-heading-section section bg-parallax" data-bg-image="assets/images/bg/bg-1.jpg" data-overlay="50">
+        <div class="container">
+            <div class="page-heading-content text-center">
+                <h3 class="title">{{request.session.Role}} Profile</h3>
+                <!-- <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="company-list.html">Companies</a></li>
+                    <li class="breadcrumb-item active">Create Job</li>
+                </ol> -->
+            </div>
+        </div>
+    </div>
+    <!-- Page Heading Section End -->
+
+    <!-- Create Job Start -->
+    <div class="section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="create-job-form col-lg-10 mx-auto">
+                    {% if key1 %}
+                    <form action="{% url 'updateprofile' pk=request.session.id %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row mb-n3">
+                            <div class="col-md-6 col-12 mb-3">
+                                <label>First Name</label>
+                                <input type="text" id="fname" placeholder="First Name" value="{{key1.Firstname}}" name="fname">
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <label>Last Name</label>
+                                <input type="text" id="lname" placeholder="Last Name" value="{{key1.Lastname}}" name="lname">
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <label>Email</label>
+                                <input type="text" id="email" placeholder="Email Id" value="{{request.session.Email}}" name="email">
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <label>Contact</label>
+                                <input type="number" id="contact" placeholder="Contact"  value="{{key1.Contact}}" name="contact">
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <label>Date of Birth</label>
+                                <input type="date" id="dob" placeholder="Date of Birth"  value="{{key1.DOB}}" name="dob">
+                            </div>
+                            
+                            <div class="col-md-6 col-12 mb-3">
+                                <label for="jobGender">Gender</label>
+                                <select id="jobGender" name="gender">
+                                    <option value="type1">Any</option>
+                                    <option value="type2">Male</option>
+                                    <option value="type3">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <label>City</label>
+                                <input type="text" id="city" placeholder="City"  value="{{key1.City}}" name="city">
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <label>State</label>
+                                <input type="text" id="state" placeholder="State"  value="{{key1.State}}" name="state">
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <label for="jobEducation">Profile Image</label>
+                                <input type="file" name="img" id="profilepic">
+                            </div>
+                            <div class="col-md-6 col-12 mb-3">
+                                <label for="jobEducation">Profile PIC</label>
+                                <img src="{{MEDIA_URL}}{{key1.profile_pic.url}}" alt="" height="150px" width="150px">
+                            </div>
+                            <!-- <div class="col-12 mb-3">
+                                <label for="jobDescription">Description</label>
+                                <textarea id="jobDescription" rows="5"></textarea>
+                            </div> -->
+                            <div class="col-12 mb-3">
+                                <button type="submit" class="btn btn-primary px-5">Update</button>
+                            </div>
+                        </div>
+                        <div class="row"></div>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Create Job End -->
+
+{% endblock %}
